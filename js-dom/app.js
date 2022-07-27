@@ -1,13 +1,13 @@
 // number , string, object, array, function, boolean
 
 // number
-let a = 3;
-let aa = 5;
+// let a = 3;
+// let aa = 5;
 // console.log(a + aa)
 
 // string
-let b = '2'
-let bb = '3'
+// let b = '2'
+// let bb = '3'
 
 // console.log(b + bb )
 
@@ -36,60 +36,60 @@ let bb = '3'
 // const title = todo.title
 // const {title, id} = todo
 
-const todos = [
-    {id: '1',title: 'todo 1', isDone: true },
-    {id: '2', title: 'todo 2', isDone: false}
-]
+// const todos = [
+//     {id: '1',title: 'todo 1', isDone: true },
+//     {id: '2', title: 'todo 2', isDone: false}
+// ]
 
-const [t1, t2] = todos
+// const [t1, t2] = todos
 
-// console.log(t2)
+// // console.log(t2)
 
-// console.log(newTodos)
+// // console.log(newTodos)
 
-// function
-
-
-const calculateAge = () => {
-    console.log('your age is')
-}
-// es6 arrow function
+// // function
 
 
-// console.log(typeof calculateAge)
-
-// boolean
-const isDone = false // isDone = false
-
-
-// callback
-
-// const logAge = (age) => {
-//     console.log(age)
+// const calculateAge = () => {
+//     console.log('your age is')
 // }
+// // es6 arrow function
 
-// const logAge = (age) => {console.log('age is '+ age)}
 
-// const logPerson = (callback) => {
-//     console.log('name: hh')
-//     callback(18)
-// }
+// // console.log(typeof calculateAge)
 
-// anonymous function  () => {}
+// // boolean
+// const isDone = false // isDone = false
 
-// logPerson(logAge)
 
-// todos.forEach((todo) => {console.log(todo)})
+// // callback
 
-// // 
+// // const logAge = (age) => {
+// //     console.log(age)
+// // }
 
-// const ForEach = (callback) => {
-//     for (let i = 0; i < todos.length; i++){
-//         callback(todos[i])
-//     }
-// }
+// // const logAge = (age) => {console.log('age is '+ age)}
 
-// DOM = Document Object Modal
+// // const logPerson = (callback) => {
+// //     console.log('name: hh')
+// //     callback(18)
+// // }
+
+// // anonymous function  () => {}
+
+// // logPerson(logAge)
+
+// // todos.forEach((todo) => {console.log(todo)})
+
+// // // 
+
+// // const ForEach = (callback) => {
+// //     for (let i = 0; i < todos.length; i++){
+// //         callback(todos[i])
+// //     }
+// // }
+
+// // DOM = Document Object Modal
 
 
 const container = document.querySelector('.container')
@@ -122,12 +122,12 @@ const createTodo = (title) => {
     return todoElement
 }
 
-const todo1 = createTodo('todo 1')
-const todo2 = createTodo('todo 2')
-const todo3 = createTodo('todo 3')
-container.appendChild(todo1)
-container.appendChild(todo2)
-container.appendChild(todo3)
+// const todo1 = createTodo('todo 1')
+// const todo2 = createTodo('todo 2')
+// const todo3 = createTodo('todo 3')
+// container.appendChild(todo1)
+// container.appendChild(todo2)
+// container.appendChild(todo3)
 
 // container.classList.add('bg-red')
 // // container.textContent = 'updated content'
@@ -146,3 +146,71 @@ container.appendChild(todo3)
 
 
 // container.remove()
+
+
+// Synchronous vs Asynchronous 
+
+const app = async () => {
+
+    let a = 1
+    console.log({a})
+    
+    let b = 2;
+    console.log({b})
+    
+    let c;
+    
+    const promise = new Promise((resolve, reject) => {
+        c = 3;
+        setTimeout(() => {
+            resolve(c)
+        }, 1000) // Bất đồng bộ
+    })
+    
+    
+    // Trường hợp bất đồng bộ: call api server, setTimeout, setInterval, ...
+    
+    // console.log({c})
+    
+    const result = await promise
+    console.log({result})
+    
+
+    let d = 4;
+    console.log({d})
+}
+
+// app()
+    
+    
+    // Promise
+    // Lời hứa -> Làm thành công, hoặc không làm (nuốt lời)
+    
+// const promise = new Promise((resolve, reject) => {
+
+// })
+
+// promise
+//     .then((ketQua) => {console.log(ketQua)})
+//     .catch((ketQua) => {console.log(ketQua)})
+
+
+
+
+// fetch API
+// fetch('https://jsonplaceholder.typicode.com/posts', {method: 'GET'}) // promise
+//   .then((response) => response.json()) // new promise # response.json() => new Promise()
+//   .then((json) => console.log(json));
+
+const callApi = async () => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+    const todos = await response.json()
+    todos.forEach((todo) => {
+        const newTodo = createTodo(todo.title);
+        container.append(newTodo)
+    })
+}
+
+callApi()
+
+// axios
